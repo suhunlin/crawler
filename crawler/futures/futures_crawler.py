@@ -13,6 +13,12 @@ class FuturesCrawler:
         if r.status_code == requests.codes.ok:
             self.futures_crawler(r)
 
+    def futures_http_post(self):
+        payload_date = str(self.date.year) + '/' + str(self.date.month) + '/' + str(self.date.day)
+        r = requests.post(self.url, data={'queryDate':payload_date})
+        if r.status_code == requests.codes.ok:
+            self.futures_crawler(r)
+
     def futures_crawler(self, response):
         soup = BeautifulSoup(response.text, 'html.parser')
         table = soup.find('table', class_='table_f')

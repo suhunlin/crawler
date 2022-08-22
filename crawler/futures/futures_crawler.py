@@ -33,9 +33,10 @@ class FuturesCrawler:
                 identity = ths[0].text.strip()
             tds = row.find_all('td')
             data = [td.text.strip() for td in tds]
-            data.insert(0, product)
-            data.insert(1, identity)
-            print(data)
+            convert = [int(num_str.replace(',', '')) for num_str in data] #convert num_str to int
+            convert.insert(0, product)
+            convert.insert(1, identity)
+            print(convert)
 
 
 
